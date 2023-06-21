@@ -2,22 +2,23 @@ import time
 import re
 
 def gcd(x, y):
-    if x == 0:
-        return y
-    if y == 0:
-        return x
-    for i in range(min(x, y), 0, -1):
+
+    for i in range(abs(min(x, y)), -1, -1):
         if x % i == 0 and y % i == 0:
             return i
        
 def lcm(x, y):
     lx = set()
-    ly = set()
-    for i in range(1, max(x, y) + 1):
+    ly = set()   
+    i = 1
+    while True:
         lx.add(x * i)
         ly.add(y * i)
+        if len(lx.intersection(ly)) == 1:
+            return lx.intersection(ly).pop()
+        i += 1
 
-    return min(lx.intersection(ly))
+    
 
 def enum(l):
     return list(enumerate(l))
@@ -70,6 +71,17 @@ def do_something(x):
 
     return answer
 
+def euclidean(x, y):
+    while y != 0:
+        x, y = y, x % y
+    return x
+
 time_start = time.time()
-print(gcd(16, 32))
+print(lcm(6, 27))
 print(time.time() - time_start)
+
+def foo(*args, **kwargs):
+    print(type(args), type(kwargs))
+foo()
+
+
