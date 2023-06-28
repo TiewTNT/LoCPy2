@@ -100,4 +100,4 @@ class RectCoor:
 
 
 if __name__ == '__main__':
-    print(RectCoor(0, -5).angle_from_x_axis())
+    print(RectCoor(4, 1).middle_between(-2, -3))
