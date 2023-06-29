@@ -26,7 +26,7 @@ class Monomial:
         return sum(self.degrees) == 0
     
     def number_of_degrees(self):
-        return len(self.degrees)
+        return len(list(filter(lambda x: x != 0, self.degrees)))
     
     def __str__(self):
         if self.is_constant():
@@ -75,4 +75,4 @@ def smallest_comp_monomial(mon: Monomial):
 print(product_monomials(Monomial(-0.5, [1, 2, 5, 9 , 5 , 7 , 4]), Monomial(-0.5, [7, 1])))
 print(smallest_multiple_for_perfect_square(3234))
 print(smallest_comp_monomial(Monomial(-3, [4, 5])))
-print(Monomial(-3.5, [3]).is_monomial())
+print(Monomial(-3.5, [0.0, 3]).number_of_degrees())
