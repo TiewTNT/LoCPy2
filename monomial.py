@@ -13,7 +13,8 @@ class Monomial:
         for i in self.degrees:
             if i < 0 or int(i) != i:
                 return False
-        if not (isinstance(self.abs_coefficient, int) or isinstance(self.abs_coefficient, float)):
+        if not (isinstance(self.abs_coefficient, int) or isinstance(self.abs_coefficient, float) or
+                isinstance(self.abs_coefficient, complex)):
             return False
             
         return True
@@ -74,4 +75,4 @@ def smallest_comp_monomial(mon: Monomial):
 print(product_monomials(Monomial(-0.5, [1, 2, 5, 9 , 5 , 7 , 4]), Monomial(-0.5, [7, 1])))
 print(smallest_multiple_for_perfect_square(3234))
 print(smallest_comp_monomial(Monomial(-3, [4, 5])))
-print(Monomial(-3.5, []))
+print(Monomial(-3.5, [3]).is_monomial())
