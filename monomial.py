@@ -29,8 +29,8 @@ class Monomial:
         if self.is_constant():
             return str(self.abs_coefficient)
         
-        return str(self.abs_coefficient) + ''.join(['x_' + str(i) +
-                ('^' + str(self.degrees[i])).replace('^1', '') for i in range(len(self.degrees))])
+        return str(self.abs_coefficient) + ''.join([str('x_' + str(i) +
+                ('^' + str(self.degrees[i])).replace('^1', '')).replace(f'x_{i}^0', '') for i in range(len(self.degrees))])
     
 
 def is_similar(mon1: Monomial, mon2: Monomial):
@@ -58,11 +58,17 @@ def product_monomials(mon1: Monomial, mon2: Monomial):
     return Monomial(mon1.abs_coefficient * mon2.abs_coefficient, mul_degrees)
 
 def smallest_multiple_for_perfect_square(n):
-    for i in range(2, int(n ** 0.5) + 1):
+    for i in range(2, int(abs(n) ** 0.5) + 1):
         if (n * i) ** 0.5 % 1 == 0:
             return i
     return n
 
+def smallest_comp_monomial(mon: Monomial):
+    degrees = [(0 if i%2 == 0 else 1) for i in mon.degrees]
+
+    return Monomial(smallest_multiple_for_perfect_square(mon.abs_coefficient), degrees)
+
 
 print(product_monomials(Monomial(-0.5, [1, 2, 5, 9 , 5 , 7 , 4]), Monomial(-0.5, [7, 1])))
 print(smallest_multiple_for_perfect_square(32))
+print(smallest_comp_monomial(Monomial(-3, [4, 5])))
