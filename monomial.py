@@ -36,11 +36,11 @@ class Monomial:
                 ('^' + str(self.degrees[i])).replace('^1', '')).replace(f'x_{i}^0', '') for i in range(len(self.degrees))])
     
 
-def is_similar(mon1: Monomial, mon2: Monomial):
-    return len(mon1.degrees) == len(mon2.degrees)
+def is_addable(mon1: Monomial, mon2: Monomial):
+    return mon1.degrees == mon2.degrees
 
 def combine_monomials(mon1: Monomial, mon2: Monomial):
-    if not is_similar(mon1, mon2):
+    if not is_addable(mon1, mon2):
         return None
     return Monomial(mon1.abs_coefficient + mon2.abs_coefficient,
                     [x + y for x, y in zip(mon1.degrees, mon2.degrees)])
