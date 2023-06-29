@@ -42,8 +42,7 @@ def is_addable(mon1: Monomial, mon2: Monomial):
 def combine_monomials(mon1: Monomial, mon2: Monomial):
     if not is_addable(mon1, mon2):
         return None
-    return Monomial(mon1.abs_coefficient + mon2.abs_coefficient,
-                    [x + y for x, y in zip(mon1.degrees, mon2.degrees)])
+    return Monomial(mon1.abs_coefficient + mon2.abs_coefficient, mon1.degrees)
 
 def product_monomials(mon1: Monomial, mon2: Monomial):
     for _ in range(diff := (max(len(mon1.degrees), len(mon2.degrees)) -
